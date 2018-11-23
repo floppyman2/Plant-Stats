@@ -7,15 +7,9 @@ char ssid[] = "iPhone";
 char pass[] = "diarra10";
 
 int AnalogPin = A0; // FSR is connected to analog A0
-int Reading;      // the analog reading from the Soil resistor divider
+int soilmoistureReading;      // the analog reading from the Soil resistor divider
 
 BlynkTimer timer;
-
-void plantsNeedWatering()
-{
- 
-}
-
 
 
 void setup() {
@@ -36,18 +30,18 @@ void setup() {
 
 
 // the loop routine runs over and over again forever:
-void loop() 
-{
+void loop() {
+ 
   Blynk.run();
   timer.run();
   
-  fsrReading = analogRead(AnalogPin);
-  Serial.print("Analog reading = ");
+  soilmoistureReading = analogRead(AnalogPin);
+  Serial.print("Soil Moisture reading = ");
   Serial.println(Reading);
 
   Blynk.virtualWrite(V1, Analog Reading);
 
-  if (fsrReading < 30){  
+  if (soilMoistureReading < 30){  
   Blynk.notify(Plants require water"));
   }
   
